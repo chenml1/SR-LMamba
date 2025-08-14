@@ -12,12 +12,14 @@ num_points = 72
 
 net = dict(type="TwoStageDetector")
 
-backbone = dict(type="ResNetWrapper",
-                resnet="resnet18",
-                pretrained=True,
-                replace_stride_with_dilation=[False, False, False],
-                out_conv=False,)
-
+backbone=dict(
+        type='MobileMamba',
+        embed_dim=[128,256,512],  
+        depth=[2, 4, 3],
+        drop_path_rate=0.1,
+        frozen_stages=-1,
+        out_indices=(0,1,2)
+) 
 neck = dict(type="ChannelMapper",
             in_channels=[128, 256, 512],
             out_channels=hidden_dim,
@@ -33,3 +35,4 @@ roi_head = dict(type="CascadeRefineHead",
                 prior_feat_channels=hidden_dim,
                 sample_points=36,  # 36
                 num_groups=6,)
+
