@@ -13,7 +13,8 @@ from srlane.datasets import build_dataloader
 from srlane.utils.recorder import build_recorder
 from srlane.utils.net_utils import save_model, load_network
 
-
+import sys
+sys.setrecursionlimit(1000000)
 class Runner(object):
     def __init__(self, cfg):
         torch.manual_seed(cfg.seed)
