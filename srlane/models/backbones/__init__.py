@@ -1,3 +1,4 @@
 # flake8: noqa
 
-from .resnet import ResNet
+from .LMamba import LMamba
+
